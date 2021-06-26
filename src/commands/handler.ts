@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { config } from "dotenv";
 import fs from "fs";
-import path from "path/posix";
+import path from "path";
 
 config();
 
@@ -32,7 +32,7 @@ class CommandHandler {
 			return;
 		}
 
-		this.commandList[command].execute(message);
+		await this.commandList[command].execute(message);
 	}
 
 	private getCommands(commandsPath: string): Array<string> {
