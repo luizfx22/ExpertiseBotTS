@@ -1,4 +1,4 @@
-import { Client } from "discord.js";
+import { Client, Message } from "discord.js";
 import { config } from "dotenv";
 import handler from "commands/handler";
 import ora from "ora";
@@ -19,7 +19,14 @@ class Bot {
 		const status = await client.login(process.env.BOT_TOKEN);
 		this.initMessage.succeed(`Connected as '${client.user?.username}'`);
 
-		client.on("message", handler);
+		client.user?.setActivity({
+			name: "%help",
+			type: "COMPETING",
+		});
+
+		client.on("message", (message: Message) => {
+			handler(message, client);
+		});
 
 		return status;
 	}
