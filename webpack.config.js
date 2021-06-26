@@ -23,11 +23,6 @@ module.exports = {
 		filename: "index.js",
 		path: path.resolve(__dirname, "dist"),
 	},
-	optimization: {
-		splitChunks: {
-			chunks: "all",
-		},
-	},
 	plugins: [
 		new ProgressBarPlugin({
 			format: "  build [:bar] " + chalk.green.bold(":percent") + " (:elapsed seconds)",

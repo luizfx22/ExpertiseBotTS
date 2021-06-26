@@ -16,11 +16,12 @@
 	"author": "iLuiizUHD",
 	"license": "MIT",
 	"devDependencies": {
+		"@types/chalk": "^2.2.0",
 		"@types/node": "^15.12.4",
+		"@types/ora": "^3.2.0",
 		"@typescript-eslint/eslint-plugin": "^4.28.0",
 		"@typescript-eslint/parser": "^4.28.0",
 		"babel-eslint": "^10.1.0",
-		"chalk": "^2.4.2",
 		"eslint": "^7.29.0",
 		"eslint-config-airbnb": "^18.2.1",
 		"eslint-config-prettier": "^8.3.0",
@@ -53,6 +54,7 @@
 	"dependencies": {
 		"@types/dotenv": "^8.2.0",
 		"discord.js": "^12.5.3",
-		"dotenv": "^10.0.0"
+		"dotenv": "^10.0.0",
+		"ora": "^5.4.1"
 	}
 }
