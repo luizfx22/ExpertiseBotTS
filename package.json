@@ -4,13 +4,6 @@
 	"description": "This is a boilerplate for quick and easy start to creating any app with Typescript",
 	"main": "./src/index.ts",
 	"scripts": {
-		// "setup-npm": "npm i -G ts-node && npm i",
-		// "setup-yarn": "npm i -G ts-node && yarn",
-		// "dev": "nodemon",
-		// "build": "webpack",
-		// "build-dev": "webpack --mode=development",
-		// "check-updates": "ncu",
-		// "update": "ncu -u && npm i",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "iLuiizUHD",
