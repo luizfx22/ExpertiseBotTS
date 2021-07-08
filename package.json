@@ -4,6 +4,10 @@
 	"description": "This is a boilerplate for quick and easy start to creating any app with Typescript",
 	"main": "./src/index.ts",
 	"scripts": {
+		"setup-npm": "npm i -G ts-node && npm i",
+		"setup-yarn": "npm i -G ts-node && yarn",
+		"start": "ts-node -r tsconfig-paths/register ./src/index.ts -T",
+		"dev": "nodemon",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "iLuiizUHD",
