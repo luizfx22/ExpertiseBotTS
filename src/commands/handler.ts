@@ -62,6 +62,8 @@ class CommandHandler {
 
 		if (command === "help") return this.handleGuildHelp(message);
 
+		message.channel.startTyping();
+
 		if (!Object.keys(this.guildCommandsList).includes(command)) {
 			const errorEmbed = new MessageEmbed({
 				title: Errors["command-not-found"].title,
@@ -69,17 +71,19 @@ class CommandHandler {
 			});
 
 			await message.channel.send(errorEmbed);
-
+			message.channel.stopTyping(true);
 			return;
 		}
 
 		await this.guildCommandsList[command].execute(message);
+		message.channel.stopTyping(true);
 	}
 
 	public async handleDirectMessage(message: Message): Promise<void> {
 		if (!message) return;
 
 		const command = message?.content;
+		message.channel.startTyping();
 
 		if (!Object.keys(this.directCommandsList).includes(command)) {
 			const errorEmbed = new MessageEmbed({
@@ -88,11 +92,13 @@ class CommandHandler {
 			});
 
 			await message.channel.send(errorEmbed);
+			message.channel.stopTyping(true);
 
 			return;
 		}
 
 		await this.directCommandsList[command].execute(message);
+		message.channel.stopTyping(true);
 	}
 
 	public async handleGuildHelp(message: Message): Promise<void> {
@@ -118,7 +124,9 @@ export default function handler(message: Message, client: Client): any {
 	if (message.author.id === client.user?.id) return false;
 	ch.client = client;
 
-	if (message.channel.type === "dm") return ch.handleDirectMessage(message);
+	if (message.channel.type === "dm") {
+		return ch.handleDirectMessage(message);
+	}
 
 	return ch.handleGuildMessage(message);
 }
