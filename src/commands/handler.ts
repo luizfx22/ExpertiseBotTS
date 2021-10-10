@@ -1,10 +1,7 @@
 import { Client, Message, MessageEmbed } from "discord.js";
-import { config } from "dotenv";
 import fs from "fs";
 import path from "path";
-import Errors from "./messages.json";
-
-config();
+import Errors from "./messages";
 
 class CommandHandler {
 	public client: Client | any;

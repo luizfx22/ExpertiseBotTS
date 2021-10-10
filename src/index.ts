@@ -1,10 +1,7 @@
 import { Client, Message } from "discord.js";
-import { config } from "dotenv";
-import handler from "commands/handler";
+import handler from "./commands/handler";
 import ora from "ora";
-import settings from "./settings.json";
-
-config();
+import settings from "./settings";
 
 class Bot {
 	private initMessage;
