@@ -36,6 +36,7 @@ class UserStatusHandler {
 	): Promise<any> {
 		if (memberId === "") return;
 
+		// console.log(member.nickname, "atualizou", activity.name, `(${this.displayTime(totalSessionPlaytime)})`);
 		console.log(member.nickname, "atualizou", activity.name, `(${this.displayTime(totalSessionPlaytime)})`);
 
 		const recordChannel = guild.channels.resolve("830220208161030164") as TextChannel;
