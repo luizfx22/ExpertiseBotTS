@@ -103,26 +103,26 @@ class UserStatusHandler {
 			);
 		}
 
-		const maxRecordOfGameInServer = await Database.Playtime.find({ guild_id: guild.id, game_name: activity.name });
+		// const maxRecordOfGameInServer = await Database.Playtime.find({ guild_id: guild.id, game_name: activity.name });
 
-		const whoHasTheMostTimePlayed = _.sortBy(maxRecordOfGameInServer, [["max_time_played", "DESC"]]);
+		// const whoHasTheMostTimePlayed = _.sortBy(maxRecordOfGameInServer, [["max_time_played", "DESC"]]);
 
-		for (const userRecord of whoHasTheMostTimePlayed) {
-			if (userRecord.max_time_played < totalSessionPlaytime && userRecord.last_time_played >= totalSessionPlaytime) {
-				const userData = guild.members.resolve(userRecord.discord_id);
-				if (!userData) continue;
+		// for (const userRecord of whoHasTheMostTimePlayed) {
+		// 	if (userRecord.max_time_played < totalSessionPlaytime && userRecord.last_time_played >= totalSessionPlaytime) {
+		// 		const userData = guild.members.resolve(userRecord.discord_id);
+		// 		if (!userData) continue;
 
-				let time = this.displayTime(userRecord.max_time_played);
-				if (userRecord.max_time_played < 1) continue;
-				time = `(${time}) `;
+		// 		let time = this.displayTime(userRecord.max_time_played);
+		// 		if (userRecord.max_time_played < 1) continue;
+		// 		time = `(${time}) `;
 
-				await recordChannel?.send(
-					`Ae ${member.toString()}, você acabou de bater o recorde de ${userData.user.toString()} ${time}jogando ${
-						activity.name
-					}! Parabéns! :clap:`
-				);
-			}
-		}
+		// 		await recordChannel?.send(
+		// 			`Ae ${member.toString()}, você acabou de bater o recorde de ${userData.user.toString()} ${time}jogando ${
+		// 				activity.name
+		// 			}! Parabéns! :clap:`
+		// 		);
+		// 	}
+		// }
 
 		//
 	}
