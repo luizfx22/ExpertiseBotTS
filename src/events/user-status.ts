@@ -1,7 +1,6 @@
-import { Activity, Client, Guild, GuildMember, Message, MessageEmbed, Presence, TextChannel } from "discord.js";
+import { Activity, Client, Guild, GuildMember, Presence, TextChannel } from "discord.js";
 import Database from "./../db/database";
 import { DateTime } from "luxon";
-import _ from "lodash";
 
 class UserStatusHandler {
 	public client: Client;
@@ -13,8 +12,6 @@ class UserStatusHandler {
 
 		for (const activity of lastPresence?.activities || []) {
 			const timestamps = { start: activity?.timestamps?.start?.toISOString()!, end: new Date().toISOString() };
-
-			console.log(actualPresence.member?.nickname, "começou", activity.name);
 
 			const diff = DateTime.fromISO(timestamps.end).diff(DateTime.fromISO(timestamps.start), ["seconds"]).toObject();
 
@@ -38,7 +35,6 @@ class UserStatusHandler {
 		totalSessionPlaytime: number
 	): Promise<any> {
 		if (memberId === "") return;
-		if (activity.type !== "PLAYING") return;
 
 		const recordChannel = guild.channels.resolve("830220208161030164") as TextChannel;
 
