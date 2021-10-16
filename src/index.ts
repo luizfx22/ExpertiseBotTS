@@ -1,7 +1,7 @@
 import { Client, Message } from "discord.js";
 import handler from "./commands/handler";
+import UserStatusHandler from "./events/user-status";
 import ora from "ora";
-import settings from "./settings";
 
 class Bot {
 	private initMessage;
@@ -17,25 +17,17 @@ class Bot {
 		const status = await client.login(process.env.BOT_TOKEN);
 		this.initMessage.succeed(`Connected as '${client.user?.username}'`);
 
-		const attentionListLength = settings.activities.length;
-		let attentionItemNow = 0;
-		setInterval(() => {
-			const opts = {
-				name: settings.activities[attentionItemNow].name.replace(":prefix:", process.env.BOT_PREFIX || "%"),
-				type: settings.activities[attentionItemNow].type || "PLAYING",
-			};
-
-			client.user?.setActivity(opts as any);
-
-			if (attentionItemNow < attentionListLength - 1) {
-				attentionItemNow++;
-			} else if (attentionItemNow === attentionListLength - 1) {
-				attentionItemNow = 0;
-			}
-		}, settings.activityInterval * 1000);
+		client.user?.setActivity({
+			name: "%help",
+			type: "LISTENING",
+		});
 
 		client.on("message", (message: Message) => {
 			handler(message, client);
+		});
+
+		client.on("presenceUpdate", (lastPresence, actualPresence) => {
+			new UserStatusHandler(client, lastPresence, actualPresence);
 		});
 
 		return status;
